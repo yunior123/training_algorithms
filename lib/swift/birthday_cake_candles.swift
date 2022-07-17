@@ -1,14 +1,18 @@
-func birthdayCakeCandles1(candles) -> {
-  let maxValue = 0;
-  let numbsCountMap = [:];
-
-  for (let number in candles) {
-    if (numbsCountMap.containsKey(number)) {
-      numbsCountMap[number] = numbsCountMap[number]! + 1;
-    } else {
-      numbsCountMap[number] = 1;
+func birthdayCakeCandles1(candles: [Int]) -> {
+    var maxValue = 0
+    var numbsCountMap:[Int:Int] = [:]
+    
+    for number in candles {
+        let keyExists = numbsCountMap[number]
+        
+        if let _ = keyExists {
+            numbsCountMap[number]! += 1;
+        } else {
+            numbsCountMap[number] = 1;
+        }
+        maxValue = max(maxValue, number);
     }
-    maxValue = math.max(maxValue, numbsCountMap[number]!);
-  }
-  return maxValue;
+
+    return numbsCountMap[maxValue]!;
 }
+
